@@ -1,0 +1,39 @@
+<!-- views/applications/new.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <title>Add a New Project</title>
+</head>
+  <body>
+    <%- include('../partials/navbar.ejs') %>
+    <h1>Add a New Project</h1>
+    <div class="new-body">
+        <form action="/users/<%= user._id %>/projects" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name">
+            
+            <label for="description">Description:</label>
+            <textarea type="text" name="description" id="description"></textarea>
+            
+            <label for="hostingLink">Hosting Link:</label>
+            <input name="hostingLink" id="hostingLink">
+            
+            <label for="repoLink">Repository Link:</label>
+            <input type="text" name="repoLink" id="repoLink">
+            
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+              <option value="hosted">Hosted</option>
+              <option value="finished">Finished</option>
+              <option value="in progress">In Progress</option>
+              <option value="outdated">Outdated</option>
+            </select>
+            <button type="submit">Add Project</button>
+          </form>
+    </div>
+  </body>
+</html>

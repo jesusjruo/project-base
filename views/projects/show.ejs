@@ -1,0 +1,46 @@
+<!-- views/applications/show.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/stylesheets/show.css" />
+  <title><%= project.name %></title>
+</head>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+    <div class="show-body">
+      <div class="show-header">
+        <div class="sub-header">
+          <h1><%= project.name %> </h1> 
+        <h3> at <a href="<%= project.hostingLink ? project.hostingLink : project.repoLink %>"><%= project.hostingLink ? project.hostingLink : project.repoLink %> </a></h3>
+        </div>
+        <div class="show-sidebar">
+          <div class="show-actions">
+            <a
+              href="/users/<%= user._id %>/projects/<%= project._id %>/edit"
+            >
+              Edit Project
+            </a>
+            <form
+              action="/users/<%= user._id %>/projects/<%= project._id %>?_method=DELETE"
+              method="POST"
+            >
+              <button type="submit">Delete Project</button>
+            </form>
+          </div>
+          <p>Current Status: <%= project.status %></p>
+        </div>
+      </div>
+      <div class="show-notes-container">
+        <% if (project.description) { %>
+        <div class="show-notes">
+          <h2>Description:</h2>
+          <p><%= project.description %></p>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

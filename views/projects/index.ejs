@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <title>Your Apps</title>
+</head>
+<body>
+<%- include('../partials/navbar.ejs') %>
+<div class="all-apps-body">
+    <div class="all-apps-header">
+      <h1>My projects</h1>
+      <a class="add-app-link" href="/users/<%=user._id%>/projects/new"
+        >Add a Project</a
+      >
+    </div>
+    <ul>
+      <% projects.forEach((project)=>{ %>
+      <a href="/users/<%= user._id %>/projects/<%= project._id %>">
+        <li><%= project.name %></li>
+      </a>
+      <% }) %>
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!-- views/applications/edit.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <title>Editing <%= project.name %></title>
+</head>
+<body>
+  <%- include('../partials/navbar.ejs') %>
+  <div class="edit-body">
+    <h1>Edit <%= project.name %></h1>
+  <form 
+    action="/users/<%= user._id %>/projects/<%= project._id %>?_method=PUT"
+    method="POST"
+  >
+    <label for="name">Name:</label>
+    <input 
+      type="text" 
+      name="name" 
+      id="name" 
+      value="<%= project.name %>"
+    >
+    <label for="description">Description:</label>
+    <textarea type="text" name="description" id="description" value="<%= project.description %>">
+      <%= project.description %>
+    </textarea>
+
+    <label for="hostingLink">Hosting Link:</label>
+    <input 
+      type="text" 
+      name="hostingLink" 
+      id="hostingLink" 
+      value="<%= project.hostingLink %>"
+    >
+
+    <label for="repoLink">Repository Link:</label>
+    <input 
+      type="text" 
+      name="repoLink" 
+      id="repoLink" 
+      value="<%= project.repoLink %>"
+    >
+    <label for="status">Status:</label>
+    <select id="status" name="status">
+      <option 
+        value="hosted" 
+        <%= project.status === "hosted" ? "selected" : "" %>
+      >
+        Hosted
+      </option>
+      <option 
+        value="finished" 
+        <%= project.status === "finished" ? "selected" : "" %>
+      >
+        Finished
+      </option>
+      <option 
+        value="in progress" 
+        <%= project.status === "in progress" ? "selected" : "" %> 
+      >
+        In progress
+      </option>
+      <option 
+        value="outdated" 
+        <%= project.status === "outdated" ? "selected" : "" %>
+      >
+        Outdated
+      </option>
+    </select>
+    <button type="submit">Update Project</button>
+  </form>
+  </div>
+</body>
+</html>
